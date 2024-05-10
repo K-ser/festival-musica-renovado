@@ -1,0 +1,79 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.header {
+  background-color: v.$verde;
+  color: v.$blanco;
+
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: .1rem .2rem .3rem #333;
+    z-index: 1;
+  }
+
+  .contenido-header {
+    padding: 2rem;
+    display: grid;
+    column-gap: 2rem;
+    grid-template-areas: "logo btn"
+                          "nav nav";
+    justify-content: space-between;
+    align-items: center;
+    @include m.tablet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  h1 {
+    text-align: start;
+    display: inline-block;
+    margin: 0;
+    font-size: 3rem;
+    @include m.tablet {
+      font-size: 4rem;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  } 
+  
+}
+
+.navegacion-principal {
+  grid-area: nav;
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+
+  @include m.tablet {
+    flex-direction: row;
+  }
+
+  a {
+    font-size: 2.4rem;
+    color: v.$blanco;
+
+    &:hover,
+    &.active-link {
+      color: v.$amarillo;
+    }
+  }
+}
+
+.btn-header {
+  text-align: end;
+  width: 5rem;
+  height: 5rem;
+  background-color: v.$verde;
+  border: none;
+  color: v.$blanco;
+}
+
