@@ -26,19 +26,18 @@ function navegacionFija() {
 
 function crearBtnHeader() {
   const header = document.querySelector('.header');
-  if(header.offsetWidth > 768) {
+  console.log(header.clientWidth)
+  // if(window.innerWidth >= 768) {
+  //   return;
+  // }
+  if(window.matchMedia('(min-width: 768px)').matches) {
     return;
   }
 
   const contenedorHeader = document.querySelector('.contenido-header');
   const navPrincipal = document.querySelector('.contenido-header nav');
-  const btnHeader = document.createElement('BUTTON');
-  btnHeader.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 6l16 0" />
-  <path d="M4 12l16 0" />
-  <path d="M4 18l16 0" />
-  </svg>`
+  const btnHeader = document.createElement('IMG');
+  btnHeader.src = 'btnMobile.svg';
   btnHeader.classList.add('btn-header');
   contenedorHeader.insertBefore(btnHeader, navPrincipal);
   
@@ -151,7 +150,9 @@ function scrollNav() {
       const sectionScroll = link.getAttribute('href');
       const section = document.querySelector(sectionScroll);
       section.scrollIntoView({behavior: "smooth"});
-      ocultarNavPrincipal();
+      if(window.matchMedia('(max-width: 768px)').matches) {
+        ocultarNavPrincipal();
+      }
     })
   })
 }
